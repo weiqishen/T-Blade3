@@ -221,6 +221,7 @@ subroutine span_variation()
     real,           allocatable     :: span_fine(:), out_coord_u_fine(:,:), out_coord_v_fine(:,:), &
                                        spline_params(:), dcpall(:,:)
     real                            :: intersec_u(nspan)
+    real,           allocatable     :: half_thk(:)
     character(:),   allocatable     :: log_file
     logical                         :: file_open, isquiet_local
 
@@ -437,7 +438,9 @@ subroutine span_variation()
             if (i == 4 .or. i == 5) then
 
 
-                call cubicspline(ncp_span_thk,0.5*cp_chord_thk(:,i),cp_chord_thk(:,1),xbs,ybs,y_spl_end,nspline, &
+                if (.not. allocated(half_thk)) allocate(half_thk(ncp_span_thk))
+                half_thk = 0.5*cp_chord_thk(:,i)
+                call cubicspline(ncp_span_thk,half_thk,cp_chord_thk(:,1),xbs,ybs,y_spl_end,nspline, &
                                  xc,yc,ncp1,.true.,dcpall)
                 call cubicbspline_intersec(ncp1,xc,yc,na,span,intersec_u,xbs,ybs,y_spl_end,.true.,segment_info,spline_params, &
                                            cp_pos)

@@ -242,8 +242,11 @@ subroutine readinput(fname)
     !
     ! All possible valid inputs are stored as logical variables in an array
     !
-    beta_value  = [index(beta_switch_2, '0') /= 0, index(beta_switch_2, '1') /= 0, index(beta_switch_2, '2') /= 0, &
-                   index(beta_switch_2, '3') /= 0, index(beta_switch_2, '4') /= 0]
+    beta_value(1) = index(beta_switch_2, '0') /= 0
+    beta_value(2) = index(beta_switch_2, '1') /= 0
+    beta_value(3) = index(beta_switch_2, '2') /= 0
+    beta_value(4) = index(beta_switch_2, '3') /= 0
+    beta_value(5) = index(beta_switch_2, '4') /= 0
 
     !
     ! Check for all possible valid inputs of the input angle switch
@@ -288,9 +291,11 @@ subroutine readinput(fname)
     !
     ! All possible valid secondary inputs are stored as logical variables in an array
     !
-    ang_spl_value   = [len(beta_switch_2(:n_temp1)) == len(trim(beta_switch_2)), &
-                       index(beta_switch_2, 'inletspline') /= 0, index(beta_switch_2, 'outletspline') /= 0, &
-                       index(beta_switch_2, 'inoutspline') /= 0, index(beta_switch_2, 'inci_dev_spline') /= 0]
+    ang_spl_value(1) = len(beta_switch_2(:n_temp1)) == len(trim(beta_switch_2))
+    ang_spl_value(2) = index(beta_switch_2, 'inletspline') /= 0
+    ang_spl_value(3) = index(beta_switch_2, 'outletspline') /= 0
+    ang_spl_value(4) = index(beta_switch_2, 'inoutspline') /= 0
+    ang_spl_value(5) = index(beta_switch_2, 'inci_dev_spline') /= 0
 
 
     call log_file_exists(log_file, nopen, file_open)
