@@ -101,14 +101,14 @@ elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "Intel" OR
 
     if(WIN32)
         # -- Windows Intel (ifort/ifx) — flags use '/' prefix -------------
-        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} /real-size:64 /fpp /free /warn:all")
+        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} /real-size:64 /fpp /free /warn:all /heap-arrays0")
 
         set(CMAKE_Fortran_FLAGS_DEBUG          "/debug:full /Od /check:bounds /traceback")
         set(CMAKE_Fortran_FLAGS_RELEASE        "/O2")
         set(CMAKE_Fortran_FLAGS_RELWITHDEBINFO "/O2 /debug:full /traceback")
     else()
         # -- Linux Intel (ifort/ifx) — flags use '-' prefix ---------------
-        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -real-size 64 -fpp -free -warn all -fPIC")
+        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -real-size 64 -fpp -free -warn all -fPIC -heap-arrays0")
 
         set(CMAKE_Fortran_FLAGS_DEBUG          "-g -O0 -check bounds -traceback")
         set(CMAKE_Fortran_FLAGS_RELEASE        "-O2")
